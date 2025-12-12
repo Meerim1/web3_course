@@ -1,18 +1,14 @@
-⭐ Restaurant Review Contract — Short Description
+⭐ Restaurant Rating Contract
 
 Build a smart contract where the owner adds a list of restaurants.
-Users can submit one review per restaurant, consisting of:
-
-a rating (1–5)
-
-a text review
+Users can submit a rating only (1–5) for a restaurant.
 
 Rules:
+Only the owner can add restaurant names
+Only added restaurants can receive ratings
+Each user can rate each restaurant only once
 
-Only restaurants added by the owner can be reviewed
-
-Each user can review each restaurant only once
-
-Store all reviews on-chain
-
-Provide a function getAverageRating(restaurantId) that returns its average rating
+Functions:
+addRestaurant(restaurantName)
+rateRestaurant(restaurantName, rating)
+getAverageRating(restaurantName) → returns the average rating
