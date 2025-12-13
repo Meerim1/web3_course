@@ -13,3 +13,10 @@ contract Users {
         users[msg.sender] = User(name, age);
     }
 }
+
+User({
+    name: name,
+    age: age
+});
+
+// User(name, age);

@@ -5,7 +5,7 @@ contract Owned {
     address public owner;
 
     constructor() {
-        owner = msg.sender;
+        owner = '0xaeF33e76972C08b8AC19221cB6e7d2fa4054af43';
     }
 
     modifier onlyOwner() {
@@ -14,6 +14,6 @@ contract Owned {
     }
 
     function doOwnerThing() public onlyOwner {
-        // only owner can call
+        return 
     }
 }
