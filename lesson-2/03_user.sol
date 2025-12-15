@@ -7,12 +7,21 @@ contract Users {
         uint age;
     }
 
-    mapping(address => User) public users;
-
+    mapping(string => integer) public users;
+    can i call users['key'] 
     function setUser(string calldata name, uint age) public {
         users[msg.sender] = User(name, age);
     }
 }
+
+
+setString(string calldata name) {
+    mapping(string => uint) public users;
+    users[name] += 1
+}
+
+
+users.name
 
 User({
     name: name,

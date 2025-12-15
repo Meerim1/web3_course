@@ -8,8 +8,8 @@ contract HelloWorld {
         message = newMessage;
     }
 
-    function setMessage(int calldata newMessage) public {
-        message = newMessage;
+    function getMessage() public {
+        return message;
     }
 }
 
