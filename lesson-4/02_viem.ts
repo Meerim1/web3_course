@@ -6,9 +6,8 @@ const client = createPublicClient({
     transport: http(),
 })
 
-
 const balance = await client.getBalance({
-    address: '0x742d35Cc6634C0532925a3b844Bc454e4438f44e',
+    address: '0xaeF33e76972C08b8AC19221cB6e7d2fa4054af43',
 })
 
 console.log(balance)

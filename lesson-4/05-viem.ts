@@ -34,7 +34,7 @@ const tx = await walletClient.writeContract({
     address: contractAddress,
     abi: erc20Abi,
     functionName: 'transfer',
-    args: ['0x25ef965b8c77F2c1a3458Af99cD3eD0b487aD34B', parseEther('0.1')],
+    args: ['0xEaBd3817A605F7c633c71A91Bac8Dd82B27D6567', parseEther('0.1')],
 })
 
 console.log('Transaction hash:', tx)

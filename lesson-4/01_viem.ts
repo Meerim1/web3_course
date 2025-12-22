@@ -7,4 +7,4 @@ const client = createPublicClient({
 })
 
 const blockNumber = await client.getBlockNumber()
-console.log(blockNumber)
+console.log(Number(blockNumber))

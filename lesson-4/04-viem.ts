@@ -2,7 +2,7 @@ import { createWalletClient, http, parseEther } from 'viem'
 import { sepolia } from 'viem/chains'
 import { mnemonicToAccount } from 'viem/accounts'
 
-const mnemonic = 'share chief zebra worth love smoke joy mystery dumb vessel critic alcohol'
+const mnemonic = 'share chief zebra worth love smoke joy mystery dumb vessel critic poem'
 
 const account = mnemonicToAccount(mnemonic)
 
