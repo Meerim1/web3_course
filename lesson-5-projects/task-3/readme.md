@@ -6,7 +6,8 @@ fetch all related events from the block
      address indexed token1,
      uint24 fee,
      address pool
-);```
+);
+```
 
 add custom logic after fetching event data
 demo here: https://www.youtube.com/watch?v=dOZ-u2zQ44A
