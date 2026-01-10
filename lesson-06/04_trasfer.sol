@@ -11,3 +11,6 @@ contract Faucet {
         to.transfer(amount);
     }
 }
+
+// (bool sent, ) = to.call{value: amount}("");
+// (bool sent, ) = to.call{value: amount, gas: 5000}("");

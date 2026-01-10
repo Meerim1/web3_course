@@ -1,18 +1,27 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.19;
-contract EtherBank {
+pragma solidity ^0.8.20;
+
+contract VulnerableBank {
     mapping(address => uint256) public balances;
 
+    // ✅ Allows users to deposit ETH
     function deposit() external payable {
         balances[msg.sender] += msg.value;
     }
 
-    function withdraw(uint256 amount) external {
-        require(balances[msg.sender] >= amount, "Insufficient");
+    // ✅ Allows contract to receive ETH directly
+    receive() external payable {
+        balances[msg.sender] += msg.value;
+    }
 
-        // ❌ External call before state update
-        payable(msg.sender).transfer(amount);
+    function withdraw() external {
+        uint256 amount = balances[msg.sender];
+        require(amount > 0, "No balance");
 
-        balances[msg.sender] -= amount;
+        // ❌ Reentrancy vulnerability still exists here
+        (bool sent, ) = msg.sender.call{value: amount}("");
+        require(sent, "Failed to send Ether");
+
+        balances[msg.sender] = 0;
     }
 }
