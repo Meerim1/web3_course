@@ -1,0 +1,3 @@
+- https://dapp-world.com/problems
+- https://hashlock.com/blog/top-50-grants-for-crypto-and-web3-projects-a-complete-list
+- https://dorahacks.io/hackathon?category=web3

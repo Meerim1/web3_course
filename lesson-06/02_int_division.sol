@@ -1,14 +1,24 @@
-Division Errors (Truncation & Division by Zero)
-❌ Integer Truncation
-uint reward = (3 / 2) * 100; // = 100, not 150
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
 
+contract Counter {
+    uint public count;
 
-Why unsafe:
+    // 50% reward
+    function calculateReward(uint deposit) public pure returns (uint) {
+        return count * (50 / 100);
+    }
 
-Solidity uses integer math
+    function setCount(uint value) public {
+        count = value;
+    }
 
-Fractions are truncated
+    function increment() public {
+        count += 1;
+    }
 
-✔ Fix
-
-uint reward = (3 * 100) / 2;
+    function decrement() public {
+        require(count > 0, "Below zero");
+        count -= 1;
+    }
+}
