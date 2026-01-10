@@ -10,7 +10,10 @@ contract Airdrop {
 
     function distribute() external {
         for (uint i = 0; i < users.length; i++) {
-            payable(users[i]).transfer(1 ether);
+            payable(users[i]).transfer(0.001 ether);
         }
     }
+
+    // Allow the contract to receive ETH
+    receive() external payable {}
 }
