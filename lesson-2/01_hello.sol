@@ -17,7 +17,51 @@ contract HelloWorld {
 // type public/private/internal/external variable = value
 // for function set visibility in the end
 // function functionName(type variable) public/private/internal/external {
-// data location calldata, memory, storage
+// data location: calldata, memory, storage
+
+storage: 📦 Постоянное хранилище контракта
+	•   данные сохраняются в блокчейне
+	•   самое дорогое по gas
+	•   используется для state variables
+    •   Живёт между транзакциями.
+
+// example 
+contract Example {
+    uint public count; // storage
+
+    function set(uint _count) public {
+        count = _count; // запись в storage
+    }
+}
+
+--------
+
+memory: 🧠 Временная память
+    •   Временная память
+	•	живёт только во время вызова функции
+	•	дешевле, чем storage
+	•	можно изменять
+    •   После выполнения функции — данные пропадают.
+
+// example
+function sum(uint[] memory arr) public pure returns (uint) {
+    arr[0] = 10; // можно
+}
+
+--------
+
+calldata: 📨 Read-only входные данные
+	•	только для параметров внешних функций
+	•	нельзя менять
+	•	самое дешёвое
+	•	не копируется в память
+
+// example
+function sum(uint[] calldata arr) external pure returns (uint) {
+    // arr[0] = 10; ❌ нельзя
+}
+
+--------
 
 Value types
 bool
