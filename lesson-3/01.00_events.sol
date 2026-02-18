@@ -21,4 +21,4 @@ contract Counter {
 }
 
 // Binance/ByBit account top up
-// Metamas notification
+// Metamask notification
